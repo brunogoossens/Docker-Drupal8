@@ -18,9 +18,10 @@
 
 ### Install Drupal 8
 
-> Database settings:
-> database: drupal8
-> user: root
-> password: root
-> host: ip of boot2docker
+Database settings:
+
+	database: drupal8
+	user: root
+	password: root
+	host: ip of boot2docker
 
