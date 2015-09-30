@@ -7,21 +7,20 @@
 
 ## How to use
 
-### Start docker containers
+### Start the docker containers
 
-	$ docker-compose build
+This command will build the containers and start the web and mysql servers. All logging will be outputted on the screen. 
+
 	$ docker-compose up
 
-### Copy drupal code into www folder
+### Copy drupal code into data/www folder
 
-	$ git clone --branch 8.0.x http://git.drupal.org/project/drupal.git www
+Start a new terminal (because the other one is running our containers) and copy the Drupal 8 code into the ./data/www folder.
+
+	$ git clone --branch 8.0.x http://git.drupal.org/project/drupal.git data/www
 
 ### Install Drupal 8
 
-Database settings:
+	$ docker-compose run web drush si standard --db-url=mysql://root:root@mysql/drupal8 --account-name=admin --account-pass=admin
 
-	database: drupal8
-	user: root
-	password: root
-	host: ip of boot2docker
 

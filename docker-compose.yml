@@ -1,7 +1,7 @@
 web:
     build: web
     volumes:
-        - ./www:/var/www/html/
+        - ./data/www:/var/www/html/
     ports:
         - "80:80"
     links:
@@ -11,8 +11,6 @@ mysql:
     environment:
         MYSQL_ROOT_PASSWORD: root
         MYSQL_DATABASE: drupal8
-        MYSQL_USER: root
-        MYSQL_PASSWORD: root
         MYSQL_ALLOW_EMPTY_PASSWORD: no
     ports:
         - "3306:3306"
