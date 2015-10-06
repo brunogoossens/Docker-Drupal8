@@ -2,10 +2,15 @@
 
 ## Dependencies
 
-[Docker](https://www.docker.com/)
-[Docker Compose](https://docs.docker.com/compose/install/)
+* [Docker](https://www.docker.com/)
+* [Docker Compose](https://docs.docker.com/compose/install/)
 
 ## How to use
+
+### Download this repository
+
+	$ git clone git@github.com:brunogoossens/dockercompose-drupal8.git dockercompose-drupal8
+	$ cd dockercompose-drupal8
 
 ### Start the docker containers
 
@@ -19,7 +24,7 @@ Start a new terminal (because the other one is running our containers) and copy 
 
 	$ git clone --branch 8.0.x http://git.drupal.org/project/drupal.git data/www
 
-### Install Drupal 8
+### Install Drupal 8 by using drush
 
 	$ docker-compose run web drush si standard --db-url=mysql://root:root@mysql/drupal8 --account-name=admin --account-pass=admin
 

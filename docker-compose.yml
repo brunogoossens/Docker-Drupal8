@@ -2,6 +2,7 @@ web:
     build: web
     volumes:
         - ./data/www:/var/www/html/
+        - ./data/archives:/root/drush-backups
     ports:
         - "80:80"
     links:
