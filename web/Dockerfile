@@ -1,18 +1,12 @@
-FROM php:5.6-apache
+FROM php:7-apache
 
 RUN a2enmod rewrite
 RUN apt-get update
-# avoid replace file when installing libapache2-mod-php5
-RUN rm /etc/apache2/mods-available/php5.load 
 RUN apt-get -qq install \
 		libapache2-mod-php5 \
 		libjpeg62-turbo-dev \
 		libpng12-dev \
-		libfreetype6-dev \
-		php5-mysql \
-		php5-gd \
-		php5-dev \
-		mysql-client
+		libfreetype6-dev
 RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
     && docker-php-ext-install gd \
     && docker-php-ext-install pdo_mysql \
@@ -33,4 +27,3 @@ RUN composer install
 RUN ln -s /usr/local/lib/drush/drush /usr/local/bin/drush
 
 WORKDIR /var/www/html/
-
