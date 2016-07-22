@@ -1,17 +1,29 @@
-web:
-    build: web
-    volumes:
-        - ./data/www:/var/www/html/
-        - ./data/archives:/root/drush-backups
-    ports:
-        - "80:80"
-    links:
-        - mysql
-mysql:
-    build: mysql
-    environment:
-        MYSQL_ROOT_PASSWORD: root
-        MYSQL_DATABASE: drupal8
-        MYSQL_ALLOW_EMPTY_PASSWORD: no
-    ports:
-        - "3306:3306"
+version: '2'
+
+services:
+    web:
+        build: web
+        volumes:
+            - ./data/www:/var/www/html/
+            - ./data/archives:/root/drush-backups
+        ports:
+            - "80:80"
+        links:
+            - mysql
+        networks:
+            - default
+        restart: always
+    mysql:
+        build: mysql
+        environment:
+            MYSQL_ROOT_PASSWORD: "root"
+            MYSQL_DATABASE: "drupal8"
+            MYSQL_ALLOW_EMPTY_PASSWORD: "no"
+        ports:
+            - "3306:3306"
+        networks:
+            - default
+        restart: always
+networks:
+    default:
+        driver: bridge
