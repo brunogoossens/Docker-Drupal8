@@ -1,5 +1,6 @@
 FROM php:7-apache
 
+COPY config/php.ini /usr/local/etc/php/
 RUN a2enmod rewrite
 RUN apt-get update
 RUN apt-get -qq install \
@@ -13,17 +14,14 @@ RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-di
     && docker-php-ext-install mysqli \
     && docker-php-ext-install zip \
     && docker-php-ext-install pcntl \
+    && docker-php-ext-install opcache \
     && docker-php-ext-install mbstring
 RUN usermod -u 1000 www-data
 
-WORKDIR /usr/local/lib/
 RUN curl -sS https://getcomposer.org/installer | php
 RUN mv composer.phar /usr/local/bin/composer
 
-RUN apt-get -qq install git
-RUN git clone --branch master https://github.com/drush-ops/drush.git
-WORKDIR /usr/local/lib/drush
-RUN composer install
-RUN ln -s /usr/local/lib/drush/drush /usr/local/bin/drush
-
 WORKDIR /var/www/html/
+RUN composer require drupal/console:1.0.0-alpha2 --prefer-dist --optimize-autoloader --sort-packages
+RUN composer install
+ENV PATH "$PATH:/var/www/html/vendor/bin"

@@ -14,7 +14,7 @@
 
 ### Start the docker containers
 
-This command will build the containers and start the web and mysql servers. All logging will be outputted on the screen. 
+This command will build the containers and start the web and mysql servers. All logging will be outputted on the screen.
 
 	$ docker-compose up
 
@@ -26,6 +26,4 @@ Start a new terminal (because the other one is running our containers) and copy 
 
 ### Install Drupal 8 by using drush
 
-	$ docker-compose run web drush si standard --db-url=mysql://root:root@mysql/drupal8 --account-name=admin --account-pass=admin
-
-
+	$ docker-compose run web drupal site:install --db-host=mysql --db-name=drupal8 --db-user=root --db-pass=root
