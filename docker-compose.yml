@@ -3,14 +3,14 @@ version: '2'
 services:
     web:
         build: web
-        volumes:
-            - ./data/www:/var/www/html/
-            - ./data/archives:/root/drush-backups
         ports:
             - "80:80"
-        links:
-            - mysql
         restart: always
+        networks:
+            - main
+        volumes:
+            - /Users/brunogoossens/Projects/Drupal8-Docker/web/app:/var/www/html
+        # volume_driver: nfs
     mysql:
         build: mysql
         environment:
@@ -20,6 +20,8 @@ services:
         ports:
             - "3306:3306"
         restart: always
+        networks:
+            - main
     phpmyadmin:
         image: phpmyadmin/phpmyadmin
         container_name: phpmyadmin
@@ -36,3 +38,9 @@ services:
             - mysql
         volumes:
             - /sessions
+        networks:
+            - main
+
+networks:
+    main:
+        driver: bridge

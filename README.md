@@ -24,6 +24,6 @@ Start a new terminal (because the other one is running our containers) and copy 
 
 	$ git clone --branch 8.0.x http://git.drupal.org/project/drupal.git data/www
 
-### Install Drupal 8 by using drush
+### Install Drupal 8 by using drupal console
 
 	$ docker-compose run web drupal site:install --db-host=mysql --db-name=drupal8 --db-user=root --db-pass=root
