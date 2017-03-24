@@ -9,7 +9,7 @@ services:
         networks:
             - main
         volumes:
-            - /Users/brunogoossens/Projects/Drupal8-Docker/web/app:/var/www/html
+            - ./web/app:/var/www/html
         # volume_driver: nfs
     mysql:
         build: mysql

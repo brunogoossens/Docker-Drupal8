@@ -18,11 +18,11 @@ This command will build the containers and start the web and mysql servers. All 
 
 	$ docker-compose up
 
-### Copy drupal code into data/www folder
+### Copy drupal code into web/app folder
 
-Start a new terminal (because the other one is running our containers) and copy the Drupal 8 code into the ./data/www folder.
+Start a new terminal (because the other one is running our containers) and copy the Drupal 8 code into the ./web/app folder.
 
-	$ git clone --branch 8.0.x http://git.drupal.org/project/drupal.git data/www
+	$ git clone --branch 8.0.x http://git.drupal.org/project/drupal.git web/app
 
 ### Install Drupal 8 by using drupal console
 
