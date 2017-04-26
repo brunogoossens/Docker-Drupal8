@@ -28,10 +28,6 @@ This command will build the containers and start the web and mysql servers. All 
 
 	$ docker-compose exec web composer install -o
 
-### Install Drupal 8 by using drupal console
+### Install Drupal 8 by using Drupal console
 
 	$ docker-compose exec web drupal site:install --db-host=mysql --db-name=drupal8 --db-user=root --db-pass=root
-
-### Use the one-liner to do it all
-
-	$ git clone git@github.com:brunogoossens/dockercompose-drupal8.git Drupal8-Docker && cd Drupal8-Docker && git clone --branch 8.4.x http://git.drupal.org/project/drupal.git web/app && docker-compose up -d && docker-compose exec web composer install -o && docker-compose exec web drupal site:install --db-host=mysql --db-name=drupal8 --db-user=root --db-pass=root
