@@ -20,13 +20,15 @@ RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-di
     && docker-php-ext-install mbstring
 RUN usermod -u 1000 www-data
 
-RUN cd
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
     && php composer-setup.php --install-dir=/usr/bin --filename=composer \
     && php -r "unlink('composer-setup.php');";
 
-RUN composer require drupal/console:1.0.0-alpha2 --prefer-dist --optimize-autoloader --sort-packages
-RUN composer install -o
+RUN mkdir /composer \
+&& cd /composer \
+&& composer require drupal/console --prefer-dist --optimize-autoloader --sort-packages \
+&& composer install -o
+
+RUN ln -s /composer/vendor/bin/drupal /usr/bin/drupal
 
 WORKDIR /var/www/html/
-ENV PATH "$PATH:/var/www/html/vendor/bin"
