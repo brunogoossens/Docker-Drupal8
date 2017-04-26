@@ -22,7 +22,7 @@ Start a new terminal (because the other one is running our containers) and copy 
 
 This command will build the containers and start the web and mysql servers. All logging will be outputted on the screen.
 
-	$ docker-compose up
+	$ docker-compose up -d
 
 ### Install Drupal 8 by using drupal console
 
