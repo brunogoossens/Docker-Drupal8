@@ -22,6 +22,8 @@ services:
         restart: always
         networks:
             - main
+        volumes:
+            - ./db:/var/lib/mysql
     phpmyadmin:
         image: phpmyadmin/phpmyadmin
         container_name: phpmyadmin
